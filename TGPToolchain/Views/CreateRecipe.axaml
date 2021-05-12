@@ -1,0 +1,57 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:TGPToolchain.ViewModels"
+        xmlns:converters="clr-namespace:TGPToolchain.Converters"
+        xmlns:helpers="clr-namespace:TGPToolchain.Helpers"
+        xmlns:models="clr-namespace:TGPToolchain.Models"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="TGPToolchain.Views.CreateRecipe"
+        Title="CreateRecipe"
+        SizeToContent="WidthAndHeight"
+        CanResize="False"
+        Padding="5">
+    <Window.Resources>
+        <converters:MethodEnumString x:Key="MethodEnumString" />
+    </Window.Resources>
+    <Design.DataContext>
+        <viewModels:CreateRecipeViewModel />
+    </Design.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Content="Item A:" />
+        <Label Grid.Row="0" Grid.Column="2" Content="Item B:" />
+        <Label Grid.Row="0" Grid.Column="3" Content="Result:" />
+        <TextBox Text="{Binding ItemA}" Grid.Row="1" Grid.Column="0" MinWidth="150" Margin="0 0 5 5" />
+        <ComboBox Items="{Binding AvailableMethods}" SelectedItem="{Binding Method}" Grid.Row="1" Grid.Column="1" MinWidth="50" Margin="0 0 5 5">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Converter={StaticResource MethodEnumString}}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <TextBox Text="{Binding ItemB}" Grid.Row="1" Grid.Column="2" MinWidth="150" Margin="0 0 5 5" />
+        <AutoCompleteBox Grid.Row="1" Grid.Column="3" ValueMemberBinding="{Binding Code}" ItemFilter="{Binding FilterPredicate}" IsTextCompletionEnabled="True" FilterMode="Custom" MinWidth="150" Items="{Binding ItemBrowseList}" Text="{Binding Result}">
+            <AutoCompleteBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Code}" FontWeight="Bold" />
+                        <TextBlock Text="{Binding Name}" Foreground="DarkGray" />
+                    </StackPanel>
+                </DataTemplate>
+            </AutoCompleteBox.ItemTemplate>
+        </AutoCompleteBox>
+        <Button Grid.Column="3" Grid.Row="2" HorizontalAlignment="Right" Content="Create Recipe" Command="{Binding CreateRecipeCommand}" />
+    </Grid>
+</Window>

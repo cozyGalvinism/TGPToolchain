@@ -1,0 +1,180 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:TGPToolchain.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:converters="clr-namespace:TGPToolchain.Converters"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="TGPToolchain.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="The Genesis Project Toolchain">
+    
+    <Window.Resources>
+        <converters:StringSplit x:Key="StringSplitConverter"  />
+        <converters:MethodEnumString x:Key="MethodEnumConverter" />
+    </Window.Resources>
+    
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    
+    <TabControl>
+        <TabItem Header="Items">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <DockPanel LastChildFill="True" Margin="0 0 0 5">
+                    <Button Content="Create Item" Command="{Binding CreateItemCommand}" Margin="0 0 5 0" />
+                    <TextBox Text="{Binding ItemSearchString}" />
+                </DockPanel>
+                <DataGrid CanUserResizeColumns="True" CanUserReorderColumns="True" CanUserSortColumns="True" Grid.Row="1" CellPointerPressed="DataGrid_OnCellPointerPressed" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" IsReadOnly="True" Items="{Binding Items}" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+                <DataGrid.Styles>
+                    <Style Selector="DataGrid:focus DataGridCell:current /template/ Grid#FocusVisual">
+                        <Setter Property="IsVisible" Value="False" />
+                    </Style>
+                    <Style Selector="TextBlock">
+                        <Setter Property="TextWrapping" Value="Wrap" />
+                    </Style>
+                </DataGrid.Styles>
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Edit Item" Command="{Binding EditItemCommand}" />
+                        <MenuItem Header="Delete Item" Command="{Binding DeleteItemCommand}" />
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Code" MaxWidth="200" Binding="{Binding Code}" />
+                    <DataGridTextColumn Header="Name" MaxWidth="200" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Prefab" MaxWidth="200" Binding="{Binding Prefab}" />
+                    <DataGridTextColumn Header="Grist" MaxWidth="200" Binding="{Binding Grist}" />
+                    <DataGridTextColumn Header="Strifekind" MaxWidth="200" Binding="{Binding Strifekind}" />
+                    <DataGridTextColumn Header="Weaponsprite" MaxWidth="200" Binding="{Binding Weaponsprite}" />
+                    <DataGridCheckBoxColumn Header="Custom" Binding="{Binding Custom}" />
+                    <DataGridTextColumn Header="Icon" MaxWidth="200" Binding="{Binding Icon}" />
+                    <DataGridTextColumn Header="Description" MaxWidth="200" Binding="{Binding Description}" />
+                    <DataGridTextColumn Header="Speed" MaxWidth="200" Binding="{Binding Speed}" />
+                    <DataGridCheckBoxColumn Header="Spawn" Binding="{Binding Spawn}" />
+                    <DataGridTextColumn Header="Aliases" MaxWidth="200" Binding="{Binding Aliases, Converter={StaticResource StringSplitConverter}}" />
+                    <DataGridTextColumn Header="Tags" MaxWidth="200" Binding="{Binding Tags, Converter={StaticResource StringSplitConverter}}" />
+                    <DataGridTextColumn Header="Prototyping" MaxWidth="200" Binding="{Binding Prototyping}" />
+                </DataGrid.Columns>
+            </DataGrid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Recipes">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <DockPanel LastChildFill="True" Margin="0 0 0 5">
+                    <Button Content="Create Recipe" Command="{Binding CreateRecipeCommand}" Margin="0 0 5 0" />
+                    <TextBox Text="{Binding RecipeSearchString}" />
+                </DockPanel>
+                <DataGrid CanUserResizeColumns="True" CanUserReorderColumns="True" CanUserSortColumns="True" Grid.Row="1" CellPointerPressed="DataGrid_OnCellPointerPressedRecipes" SelectedItem="{Binding SelectedRecipe, Mode=TwoWay}" IsReadOnly="True" Items="{Binding Recipes}" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+                <DataGrid.Styles>
+                    <Style Selector="DataGrid:focus DataGridCell:current /template/ Grid#FocusVisual">
+                        <Setter Property="IsVisible" Value="False" />
+                    </Style>
+                    <Style Selector="TextBlock">
+                        <Setter Property="TextWrapping" Value="Wrap" />
+                    </Style>
+                </DataGrid.Styles>
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Edit Recipe" Command="{Binding EditRecipeCommand}" />
+                        <MenuItem Header="Delete Recipe" Command="{Binding DeleteRecipeCommand}" />
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Item A" MaxWidth="200" Binding="{Binding ItemA}" />
+                    <DataGridTextColumn Header="Method" MaxWidth="200" Binding="{Binding Method, Converter={StaticResource MethodEnumConverter}}" />
+                    <DataGridTextColumn Header="Item B" MaxWidth="200" Binding="{Binding ItemB}" />
+                    <DataGridTextColumn Header="Result" MaxWidth="200" Binding="{Binding Result.Code}" />
+                </DataGrid.Columns>
+            </DataGrid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Settings">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="0 5 0 0">
+                <StackPanel.Styles>
+                    <Style Selector="StackPanel[Orientation=Vertical]>TextBox">
+                        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+                        <Setter Property="Margin" Value="0 0 0 5"></Setter>
+                    </Style>
+                    <Style Selector="StackPanel[Orientation=Vertical]>NumericUpDown">
+                        <Setter Property="Margin" Value="0 0 0 5" />
+                    </Style>
+                    <Style Selector="StackPanel[Orientation=Vertical]>StackPanel">
+                        <Setter Property="Margin" Value="0 0 0 5" />
+                    </Style>
+                    <Style Selector="StackPanel[Orientation=Vertical]>CheckBox">
+                        <Setter Property="Margin" Value="0 0 0 5" />
+                    </Style>
+                </StackPanel.Styles>
+                <Label Content="The Genesis Project Path:" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBox MinWidth="300" Margin="0 0 5 0" Text="{Binding GamePath}" />
+                    <Button Content="Browse" Margin="0 0 5 0" Command="{Binding BrowseGameCommand}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Open folder" Margin="0 0 5 0" Command="{Binding OpenGameFolderCommand}" />
+                    <Button Content="Open StreamingAssets folder" Margin="0 0 5 0" Command="{Binding OpenStreamingAssetsCommand}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Name="CustomLocation" Content="Specify custom database location" Margin="0 0 2 0" IsChecked="{Binding AllowDatabaseCustom}" />
+                    <Border Background="{DynamicResource ThemeAccentBrush}" ToolTip.Placement="Right">
+                        <ToolTip.Tip>
+                            <TextBlock Foreground="Red" Text="Only check this if you know what you're doing! You will need to copy that database file to the StreamingAssets folder in order to see your changes!" />
+                        </ToolTip.Tip>
+                        <TextBlock Text="?" TextDecorations="Underline" />
+                    </Border>
+                </StackPanel>
+                <Label Content="Database Path:" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBox MinWidth="300" Margin="0 0 5 0" IsReadOnly="{Binding ElementName=CustomLocation, Path=IsChecked}" Text="{Binding DatabasePath, Mode=TwoWay}" />
+                    <Button Content="Browse" Margin="0 0 5 0" IsEnabled="{Binding ElementName=CustomLocation, Path=IsChecked}" Command="{Binding BrowseDatabaseFileCommand}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Create Backup" Margin="0 0 5 0" Command="{Binding CreateBackupCommand}" />
+                    <Button Content="Restore Backup" Margin="0 0 5 0" Command="{Binding RestoreBackupCommand}" />
+                    <Button Content="Open Backup folder" Margin="0 0 5 0" Command="{Binding OpenBackupFolderCommand}" />
+                </StackPanel>
+                <HeaderedContentControl Header="Utility Functions - hover for more info" ToolTip.Tip="not here, hover over the buttons...">
+                    <HeaderedContentControl.Styles>
+                        <Style Selector="HeaderedContentControl">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Border>
+                                            <StackPanel>
+                                                <ContentPresenter TextBlock.FontWeight="Bold" Content="{TemplateBinding Header}" />
+                                                <Border
+                                                    BorderBrush="{TemplateBinding Background}"
+                                                    BorderThickness="2"
+                                                    CornerRadius="5">
+                                                    <ContentPresenter Content="{TemplateBinding Content}" />
+                                                </Border>
+                                            </StackPanel>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </HeaderedContentControl.Styles>
+                    <WrapPanel>
+                        <Button Content="Open Log folder" Margin="0 0 5 0" ToolTip.Tip="Opens the folder where the TGP log resides in." Command="{Binding OpenLogFolderCommand}" />
+                        <Button Content="Upload Log file" Margin="0 0 5 0" ToolTip.Tip="Uploads your TGP log file to a secure location and copies the link to your clipboard. Useful for sharing with developers!&#10;&#10;This may not work if your log file is too big!" Command="{Binding UploadLogCommand}" />
+                        <Button Content="Fix the game on Mac" Margin="0 0 5 0" Command="{Binding QuarantineFixCommand}">
+                            <ToolTip.Tip>
+                                <TextBlock Text="Removes the quarantine bit on the game by running 'xattr -d com.apple.quarantine /path/to/application/The\ Genesis\ Project.app' for you. This usually fixes the issues with characters appearing blank and being unable to open the character editor but also makes the game run on OS X Big Sur again.&#10;&#10;Running this more than once does nothing." />
+                            </ToolTip.Tip>
+                        </Button>
+                    </WrapPanel>
+                </HeaderedContentControl>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
+</Window>
