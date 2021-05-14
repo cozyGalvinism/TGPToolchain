@@ -75,7 +75,6 @@ namespace TGPToolchain.ViewModels
                 Aliases.RemoveAt(SelectedAliasIndex);
             }, this.WhenAnyValue(p => p.SelectedAliasIndex, index =>
             {
-                Trace.TraceWarning($"Index: {index}, None? {index != -1}");
                 return index != -1;
             }));
             AddTagCommand = ReactiveCommand.Create(() =>

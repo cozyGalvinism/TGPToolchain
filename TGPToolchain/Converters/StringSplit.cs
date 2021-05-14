@@ -16,7 +16,10 @@ namespace TGPToolchain.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is not string strValue ? new List<string>() : strValue.Split(',').Select(s => s.Trim()).ToList();
+            return value is not string strValue
+                ? new List<string>()
+                : strValue.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)
+                    .ToList();
         }
     }
 }

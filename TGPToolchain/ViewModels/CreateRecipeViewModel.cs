@@ -77,11 +77,9 @@ namespace TGPToolchain.ViewModels
             _itemBrowseList = items == null ? new ObservableCollection<LDBItem>() : new ObservableCollection<LDBItem>(items);
             CreateRecipeCommand = ReactiveCommand.Create(() =>
                 {
-                    Trace.TraceWarning($"Result is {Result}");
                     if (ItemA == null || ItemB == null || Result == null) return null;
                     var resultItem = _itemBrowseList.FirstOrDefault(i => i.Code == Result);
                     if (resultItem == null) return null;
-                    Trace.TraceWarning("Creating recipe");
                     var newRecipe = new LDBRecipe()
                     {
                         ItemA = ItemA,
