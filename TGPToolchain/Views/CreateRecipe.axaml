@@ -33,7 +33,7 @@
         <Label Grid.Row="0" Grid.Column="0" Content="Item A:" />
         <Label Grid.Row="0" Grid.Column="2" Content="Item B:" />
         <Label Grid.Row="0" Grid.Column="3" Content="Result:" />
-        <TextBox Text="{Binding ItemA}" Grid.Row="1" Grid.Column="0" MinWidth="150" Margin="0 0 5 5" />
+        <TextBox Text="{Binding ItemA}" Grid.Row="1" Grid.Column="0" Width="150" Margin="0 0 5 5" />
         <ComboBox Items="{Binding AvailableMethods}" SelectedItem="{Binding Method}" Grid.Row="1" Grid.Column="1" MinWidth="50" Margin="0 0 5 5">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -41,8 +41,8 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <TextBox Text="{Binding ItemB}" Grid.Row="1" Grid.Column="2" MinWidth="150" Margin="0 0 5 5" />
-        <AutoCompleteBox Grid.Row="1" Grid.Column="3" ValueMemberBinding="{Binding Code}" ItemFilter="{Binding FilterPredicate}" IsTextCompletionEnabled="True" FilterMode="Custom" MinWidth="150" Items="{Binding ItemBrowseList}" Text="{Binding Result}">
+        <TextBox Text="{Binding ItemB}" Grid.Row="1" Grid.Column="2" Width="150" Margin="0 0 5 5" />
+        <AutoCompleteBox Grid.Row="1" Grid.Column="3" ValueMemberBinding="{Binding Code}" ItemFilter="{Binding FilterPredicate}" IsTextCompletionEnabled="True" FilterMode="Custom" Width="150" Items="{Binding ItemBrowseList}" Text="{Binding Result}">
             <AutoCompleteBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">

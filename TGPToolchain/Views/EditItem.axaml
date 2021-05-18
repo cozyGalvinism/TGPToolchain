@@ -35,17 +35,17 @@
             <Label Content="Code:" />
             <TextBox IsReadOnly="True" HorizontalAlignment="Left" MinWidth="150" MaxLength="8" Text="{Binding Code}" />
             <Label Content="Name:" />
-            <TextBox MinWidth="250" Text="{Binding Name}" />
+            <TextBox Width="250" Text="{Binding Name}" />
             <Label Content="Description:" />
-            <TextBox MinHeight="100" MinWidth="250" Text="{Binding Description}" />
+            <TextBox Height="100" Width="250" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Description}" />
             <Label Content="Prefab:" />
-            <TextBox MinWidth="250" Text="{Binding Prefab}" />
+            <TextBox Width="250" Text="{Binding Prefab}" />
             <Label Content="Strifekind:" />
-            <TextBox MinWidth="250" Text="{Binding Strifekind}" />
+            <TextBox Width="250" Text="{Binding Strifekind}" />
             <Label Content="Weaponsprite:" />
-            <TextBox MinWidth="250" Text="{Binding Weaponsprite}" />
+            <TextBox Width="250" Text="{Binding Weaponsprite}" />
             <Label Content="Icon:" />
-            <TextBox MinWidth="250" Text="{Binding Icon}" />
+            <TextBox Width="250" Text="{Binding Icon}" />
             <Label Content="Grist / Damage:" />
             <NumericUpDown Value="{Binding Grist}" />
             <Label Content="Attack Speed:" />
@@ -55,7 +55,7 @@
         </StackPanel>
         <StackPanel Grid.Row="0" Margin="5 0 0 0" Grid.Column="1">
             <Label Content="Aliases:" />
-            <DataGrid Name="AliasGrid" IsReadOnly="False" MinWidth="250" Height="212" Items="{Binding Aliases}" SelectedIndex="{Binding SelectedAliasIndex, Mode=TwoWay}">
+            <DataGrid Name="AliasGrid" IsReadOnly="False" Width="250" Height="212" Items="{Binding Aliases}" SelectedIndex="{Binding SelectedAliasIndex, Mode=TwoWay}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Alias" IsReadOnly="False" Binding="{Binding Value, Mode=TwoWay}" />
                 </DataGrid.Columns>
@@ -65,7 +65,7 @@
                 <Button HorizontalAlignment="Right" Width="28" Height="28" Content="-" Command="{Binding RemoveAliasCommand}" />
             </StackPanel>
             <Label Content="Tags:" />
-            <DataGrid Name="TagsGrid" IsReadOnly="False" MinWidth="250" Height="212" Items="{Binding Tags}" SelectedIndex="{Binding SelectedTagIndex, Mode=TwoWay}">
+            <DataGrid Name="TagsGrid" IsReadOnly="False" Width="250" Height="212" Items="{Binding Tags}" SelectedIndex="{Binding SelectedTagIndex, Mode=TwoWay}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Tag" Binding="{Binding Value, Mode=TwoWay}" />
                 </DataGrid.Columns>

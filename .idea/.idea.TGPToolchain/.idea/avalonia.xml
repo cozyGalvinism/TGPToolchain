@@ -5,6 +5,7 @@
       <map>
         <entry key="TGPToolchain/MessageBox/MessageBox.axaml" value="TGPToolchain/TGPToolchain.csproj" />
         <entry key="TGPToolchain/Views/CreateItem.axaml" value="TGPToolchain/TGPToolchain.csproj" />
+        <entry key="TGPToolchain/Views/CreateRecipe.axaml" value="TGPToolchain/TGPToolchain.csproj" />
         <entry key="TGPToolchain/Views/EditItem.axaml" value="TGPToolchain/TGPToolchain.csproj" />
         <entry key="TGPToolchain/Views/MainWindow.axaml" value="TGPToolchain/TGPToolchain.csproj" />
       </map>

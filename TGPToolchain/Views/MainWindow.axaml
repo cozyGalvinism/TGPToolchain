@@ -116,7 +116,7 @@
                 </StackPanel.Styles>
                 <Label Content="The Genesis Project Path:" />
                 <StackPanel Orientation="Horizontal">
-                    <TextBox MinWidth="300" Margin="0 0 5 0" Text="{Binding GamePath}" />
+                    <TextBox Width="300" Margin="0 0 5 0" Text="{Binding GamePath}" />
                     <Button Content="Browse" Margin="0 0 5 0" Command="{Binding BrowseGameCommand}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
@@ -134,7 +134,7 @@
                 </StackPanel>
                 <Label Content="Database Path:" />
                 <StackPanel Orientation="Horizontal">
-                    <TextBox MinWidth="300" Margin="0 0 5 0" IsReadOnly="{Binding ElementName=CustomLocation, Path=IsChecked}" Text="{Binding DatabasePath, Mode=TwoWay}" />
+                    <TextBox Width="300" Margin="0 0 5 0" IsReadOnly="{Binding ElementName=CustomLocation, Path=IsChecked}" Text="{Binding DatabasePath, Mode=TwoWay}" />
                     <Button Content="Browse" Margin="0 0 5 0" IsEnabled="{Binding ElementName=CustomLocation, Path=IsChecked}" Command="{Binding BrowseDatabaseFileCommand}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
