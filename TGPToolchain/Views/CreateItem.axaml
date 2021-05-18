@@ -51,6 +51,7 @@
             <Label Content="Attack Speed:" />
             <NumericUpDown Value="{Binding Speed}" />
             <CheckBox Content="Can spawn in dungeon chests" IsChecked="{Binding Spawn}" />
+            <CheckBox Content="Is custom item?" IsChecked="{Binding Custom}" />
         </StackPanel>
         <StackPanel Grid.Row="0" Margin="5 0 0 0" Grid.Column="1">
             <Label Content="Aliases:" />

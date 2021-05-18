@@ -24,6 +24,7 @@ namespace TGPToolchain.ViewModels
         private string? _description;
         private int _speed;
         private bool _spawn;
+        private bool _custom;
         private ObservableCollection<StringValue> _aliases;
         private ObservableCollection<StringValue> _tags;
         private int _selectedAliasIndex;
@@ -53,7 +54,7 @@ namespace TGPToolchain.ViewModels
                     Spawn = Spawn,
                     Aliases = Aliases.Select(x => x.Value).ToList(),
                     Tags = Tags.Select(x => x.Value).ToList(),
-                    Custom = true
+                    Custom = Custom
                 };
                 return newItem;
             }, this.WhenAnyValue(
@@ -175,6 +176,12 @@ namespace TGPToolchain.ViewModels
         {
             get => _spawn;
             set => this.RaiseAndSetIfChanged(ref _spawn, value);
+        }
+
+        public bool Custom
+        {
+            get => _custom;
+            set => this.RaiseAndSetIfChanged(ref _custom, value);
         }
 
         public ObservableCollection<StringValue> Aliases
