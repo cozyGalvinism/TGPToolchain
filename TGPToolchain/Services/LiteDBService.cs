@@ -25,7 +25,7 @@ namespace TGPToolchain.Services
             _ldb = new LiteDatabase(new ConnectionString
             {
                 Filename = databasePath,
-                Collation = new Collation("en-US/None")
+                // Collation = new Collation("en-US/None")
             });
 
             _itemCollection = _ldb.GetCollection<LDBItem>();
