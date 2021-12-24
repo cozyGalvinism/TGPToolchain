@@ -22,7 +22,11 @@ namespace TGPToolchain.Services
         public void InitializeDatabase(string databasePath)
         {
             _ldb?.Dispose();
-            _ldb = new LiteDatabase(databasePath);
+            _ldb = new LiteDatabase(new ConnectionString
+            {
+                Filename = databasePath,
+                Collation = new Collation("en-US/None")
+            });
 
             _itemCollection = _ldb.GetCollection<LDBItem>();
             _itemCollection.EnsureIndex(k => k.Tags);

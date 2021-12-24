@@ -28,6 +28,7 @@ namespace TGPToolchain.ViewModels
         private int _speed;
         private bool _spawn;
         private bool _custom;
+        private string? _prototyping;
         private ObservableCollection<StringValue> _aliases;
         private ObservableCollection<StringValue> _tags;
         private int _selectedAliasIndex;
@@ -50,6 +51,7 @@ namespace TGPToolchain.ViewModels
             Speed = _item.Speed;
             Spawn = _item.Spawn;
             Custom = _item.Custom;
+            Prototyping = _item.Prototyping;
             if (_item.Aliases == null) _item.Aliases = new List<string>();
             if (_item.Tags == null) _item.Tags = new List<string>();
             Aliases = new ObservableCollection<StringValue>(_item.Aliases.Select(s => new StringValue(s)));
@@ -72,7 +74,8 @@ namespace TGPToolchain.ViewModels
                     Spawn = Spawn,
                     Aliases = Aliases.Select(x => x.Value).ToList(),
                     Tags = Tags.Select(x => x.Value).ToList(),
-                    Custom = Custom
+                    Custom = Custom,
+                    Prototyping = Prototyping
                 };
                 return newItem;
             }, CanEditItem());
@@ -108,7 +111,8 @@ namespace TGPToolchain.ViewModels
                     Spawn = Spawn,
                     Aliases = Aliases.Select(x => x.Value).ToList(),
                     Tags = Tags.Select(x => x.Value).ToList(),
-                    Custom = Custom
+                    Custom = Custom,
+                    Prototyping = Prototyping
                 };
                 return newItem;
             }, CanEditItem());
@@ -216,6 +220,12 @@ namespace TGPToolchain.ViewModels
         {
             get => _custom;
             set => this.RaiseAndSetIfChanged(ref _custom, value);
+        }
+
+        public string? Prototyping
+        {
+            get => _prototyping;
+            set => this.RaiseAndSetIfChanged(ref _prototyping, value);
         }
 
         public ObservableCollection<StringValue> Aliases

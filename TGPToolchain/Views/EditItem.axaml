@@ -50,6 +50,8 @@
             <NumericUpDown Value="{Binding Grist}" />
             <Label Content="Attack Speed:" />
             <NumericUpDown Value="{Binding Speed}" />
+            <Label Content="Prototyping:" />
+            <TextBox Width="250" Text="{Binding Prototyping}" />
             <CheckBox Content="Can spawn in dungeon chests" IsChecked="{Binding Spawn}" />
             <CheckBox Content="Is custom item?" IsChecked="{Binding Custom}" />
         </StackPanel>
