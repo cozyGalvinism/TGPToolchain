@@ -6,77 +6,79 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="TGPToolchain.Views.CreateItem"
         SizeToContent="WidthAndHeight"
-        CanResize="False"
+        CanResize="True"
         Title="Create a new Item"
         Padding="5">
     <Design.DataContext>
         <viewModels:CreateItemViewModel />
     </Design.DataContext>
     
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="0 0 5 0">
-            <StackPanel.Styles>
-                <Style Selector="StackPanel[Orientation=Vertical]>TextBox">
-                    <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-                    <Setter Property="Margin" Value="0 0 0 5"></Setter>
-                </Style>
-                <Style Selector="StackPanel[Orientation=Vertical]>NumericUpDown">
-                    <Setter Property="Margin" Value="0 0 0 5" />
-                </Style>
-            </StackPanel.Styles>
-            <Label Content="Code:" />
-            <TextBox HorizontalAlignment="Left" MinWidth="150" MaxLength="8" Text="{Binding Code}" />
-            <Label Content="Name:" />
-            <TextBox Width="250" Text="{Binding Name}" />
-            <Label Content="Description:" />
-            <TextBox Height="100" Width="250" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Description}" />
-            <Label Content="Prefab:" />
-            <TextBox Width="250" Text="{Binding Prefab}" />
-            <Label Content="Strifekind:" />
-            <TextBox Width="250" Text="{Binding Strifekind}" />
-            <Label Content="Weaponsprite:" />
-            <TextBox Width="250" Text="{Binding Weaponsprite}" />
-            <Label Content="Icon:" />
-            <TextBox Width="250" Text="{Binding Icon}" />
-            <Label Content="Grist / Damage:" />
-            <NumericUpDown Value="{Binding Grist}" />
-            <Label Content="Attack Speed:" />
-            <NumericUpDown Value="{Binding Speed}" />
-            <Label Content="Prototyping:" />
-            <TextBox Width="250" Text="{Binding Prototyping}" />
-            <CheckBox Content="Can spawn in dungeon chests" IsChecked="{Binding Spawn}" />
-            <CheckBox Content="Is custom item?" IsChecked="{Binding Custom}" />
-        </StackPanel>
-        <StackPanel Grid.Row="0" Margin="5 0 0 0" Grid.Column="1">
-            <Label Content="Aliases:" />
-            <DataGrid Name="AliasGrid" IsReadOnly="False" Width="250" Height="212" Items="{Binding Aliases}" SelectedIndex="{Binding SelectedAliasIndex, Mode=TwoWay}">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Alias" IsReadOnly="False" Binding="{Binding Value, Mode=TwoWay}" />
-                </DataGrid.Columns>
-            </DataGrid>
-            <StackPanel Margin="0 5 0 5" HorizontalAlignment="Right" Orientation="Horizontal">
-                <Button HorizontalAlignment="Right" Width="28" Height="28" Content="+" Margin="0 0 5 0" Command="{Binding AddAliasCommand}" />
-                <Button HorizontalAlignment="Right" Width="28" Height="28" Content="-" Command="{Binding RemoveAliasCommand}" />
+    <ScrollViewer>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="0 0 5 0">
+                <StackPanel.Styles>
+                    <Style Selector="StackPanel[Orientation=Vertical]>TextBox">
+                        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+                        <Setter Property="Margin" Value="0 0 0 5"></Setter>
+                    </Style>
+                    <Style Selector="StackPanel[Orientation=Vertical]>NumericUpDown">
+                        <Setter Property="Margin" Value="0 0 0 5" />
+                    </Style>
+                </StackPanel.Styles>
+                <Label Content="Code:" />
+                <TextBox HorizontalAlignment="Left" MinWidth="150" MaxLength="8" Text="{Binding Code}" />
+                <Label Content="Name:" />
+                <TextBox Width="250" Text="{Binding Name}" />
+                <Label Content="Description:" />
+                <TextBox Height="100" Width="250" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Description}" />
+                <Label Content="Prefab:" />
+                <TextBox Width="250" Text="{Binding Prefab}" />
+                <Label Content="Strifekind:" />
+                <TextBox Width="250" Text="{Binding Strifekind}" />
+                <Label Content="Weaponsprite:" />
+                <TextBox Width="250" Text="{Binding Weaponsprite}" />
+                <Label Content="Icon:" />
+                <TextBox Width="250" Text="{Binding Icon}" />
+                <Label Content="Grist / Damage:" />
+                <NumericUpDown Value="{Binding Grist}" />
+                <Label Content="Attack Speed:" />
+                <NumericUpDown Value="{Binding Speed}" />
+                <Label Content="Prototyping:" />
+                <TextBox Width="250" Text="{Binding Prototyping}" />
+                <CheckBox Content="Can spawn in dungeon chests" IsChecked="{Binding Spawn}" />
+                <CheckBox Content="Is custom item?" IsChecked="{Binding Custom}" />
             </StackPanel>
-            <Label Content="Tags:" />
-            <DataGrid Name="TagsGrid" IsReadOnly="False" Width="250" Height="212" Items="{Binding Tags}" SelectedIndex="{Binding SelectedTagIndex, Mode=TwoWay}">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Tag" Binding="{Binding Value, Mode=TwoWay}" />
-                </DataGrid.Columns>
-            </DataGrid>
-            <StackPanel Margin="0 5 0 5" HorizontalAlignment="Right" Orientation="Horizontal">
-                <Button HorizontalAlignment="Right" Width="28" Height="28" Content="+" Margin="0 0 5 0" Command="{Binding AddTagCommand}" />
-                <Button HorizontalAlignment="Right" Width="28" Height="28" Content="-" Command="{Binding RemoveTagCommand}" />
+            <StackPanel Grid.Row="0" Margin="5 0 0 0" Grid.Column="1">
+                <Label Content="Aliases:" />
+                <DataGrid Name="AliasGrid" IsReadOnly="False" Width="250" Height="212" Items="{Binding Aliases}" SelectedIndex="{Binding SelectedAliasIndex, Mode=TwoWay}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Alias" IsReadOnly="False" Binding="{Binding Value, Mode=TwoWay}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Margin="0 5 0 5" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Button HorizontalAlignment="Right" Width="28" Height="28" Content="+" Margin="0 0 5 0" Command="{Binding AddAliasCommand}" />
+                    <Button HorizontalAlignment="Right" Width="28" Height="28" Content="-" Command="{Binding RemoveAliasCommand}" />
+                </StackPanel>
+                <Label Content="Tags:" />
+                <DataGrid Name="TagsGrid" IsReadOnly="False" Width="250" Height="212" Items="{Binding Tags}" SelectedIndex="{Binding SelectedTagIndex, Mode=TwoWay}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Tag" Binding="{Binding Value, Mode=TwoWay}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Margin="0 5 0 5" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Button HorizontalAlignment="Right" Width="28" Height="28" Content="+" Margin="0 0 5 0" Command="{Binding AddTagCommand}" />
+                    <Button HorizontalAlignment="Right" Width="28" Height="28" Content="-" Command="{Binding RemoveTagCommand}" />
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
-        <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Content="Create Item" Command="{Binding CreateItemCommand}" />
-    </Grid>
+            <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Content="Create Item" Command="{Binding CreateItemCommand}" />
+        </Grid>
+    </ScrollViewer>
 </Window>
