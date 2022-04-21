@@ -243,7 +243,7 @@ namespace TGPToolchain.ViewModels
                 var editRecipe = new EditRecipeViewModel(SelectedRecipe, _dataService.GetItems());
                 var result = await EditRecipeDialog.Handle(editRecipe);
                 if (result == null) return;
-                var dataServiceResult = _dataService.EditRecipe(result);
+                var dataServiceResult = _dataService.EditRecipe(SelectedRecipe, result);
                 if (!dataServiceResult)
                     await MessageBox.MessageBox.ShowDialog(null, _dataService.LastError, "An error occurred",
                         MessageBox.MessageBox.MessageBoxButtons.Ok);

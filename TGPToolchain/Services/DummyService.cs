@@ -104,7 +104,7 @@ namespace TGPToolchain.Services
             return true;
         }
 
-        public bool EditRecipe(LDBRecipe recipe)
+        public bool EditRecipe(LDBRecipe oldRecipe, LDBRecipe recipe)
         {
             return true;
         }

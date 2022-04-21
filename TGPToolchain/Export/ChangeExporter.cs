@@ -32,12 +32,12 @@ namespace TGPToolchain.Export
             itemsObject.Add("added", addedItemsArray);
             itemsObject.Add("changed", changedItemsArray);
             itemsObject.Add("deleted", deletedItemsArray);
-            var addedRecipesArray = LiteDbEntitiesToJson(addedRecipes.DistinctLast(i => i.Id));
-            var changedRecipesArray = LiteDbEntitiesToJson(changedRecipes.DistinctLast(i => i.Id));
-            var deletedRecipesArray = JArray.FromObject(deletedRecipes.DistinctLast(i => i));
-            recipesObject.Add("added", addedRecipesArray);
-            recipesObject.Add("changed", changedRecipesArray);
-            recipesObject.Add("deleted", deletedRecipesArray);
+            // var addedRecipesArray = LiteDbEntitiesToJson(addedRecipes.DistinctLast(i => i.Id));
+            // var changedRecipesArray = LiteDbEntitiesToJson(changedRecipes.DistinctLast(i => i.Id));
+            // var deletedRecipesArray = JArray.FromObject(deletedRecipes.DistinctLast(i => i));
+            // recipesObject.Add("added", addedRecipesArray);
+            // recipesObject.Add("changed", changedRecipesArray);
+            // recipesObject.Add("deleted", deletedRecipesArray);
             
             exportObject.Add("name", name);
             exportObject.Add("version", version);

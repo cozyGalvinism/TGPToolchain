@@ -1,4 +1,5 @@
-﻿using LiteDB;
+﻿using System;
+using LiteDB;
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable PropertyCanBeMadeInitOnly.Global
 #pragma warning disable 8618
@@ -14,6 +15,7 @@ namespace TGPToolchain.Models
         }
     
         [BsonId]
+        [BsonField("_id")]
         public ObjectId Id { get; set; }
         public LDBItem Result { get; set; }
         public string ItemA { get; set; }

@@ -126,8 +126,7 @@ namespace TGPToolchain.Services
 
         public bool CreateRecipe(LDBRecipe recipe)
         {
-            var exists = recipe.Id != null && _recipeCollection.FindById(recipe.Id) != null ||
-                         DoesRecipeExist(recipe.ItemA, recipe.Method, recipe.ItemB);
+            var exists = DoesRecipeExist(recipe.ItemA, recipe.Method, recipe.ItemB);
             if (exists)
             {
                 _lastError = "A recipe like that already exists!";
@@ -137,48 +136,29 @@ namespace TGPToolchain.Services
             return true;
         }
 
-        public bool EditRecipe(LDBRecipe recipe)
+        public bool EditRecipe(LDBRecipe oldRecipe, LDBRecipe recipe)
         {
-            // Recipe has no ID
-            if (recipe.Id == null)
-            {
-                _lastError = "The recipe you're editing has no ID!";
-                return false;
-            }
-            // Find recipe by ID
-            var existingRecipe = _recipeCollection.FindById(recipe.Id);
-            // No recipe exists to edit
-            if (existingRecipe == null)
-            {
-                _lastError = "This recipe does not exist!";
-                return false;
-            }
             // A recipe like this already exists
             if (DoesRecipeExist(recipe.ItemA, recipe.Method, recipe.ItemB))
             {
                 _lastError = "A recipe like that already exists!";
                 return false;
             }
-            _recipeCollection.Update(recipe);
+            _recipeCollection.UpdateMany(r => new LDBRecipe
+            {
+                ItemA = recipe.ItemA,
+                ItemB = recipe.ItemB,
+                Method = recipe.Method,
+                Result = recipe.Result
+            }, r => r.ItemA == oldRecipe.ItemA && r.ItemB == oldRecipe.ItemB && r.Method == oldRecipe.Method);
             return true;
         }
 
         public bool DeleteRecipe(LDBRecipe recipe)
         {
-            var existingRecipe = _recipeCollection.FindById(recipe.Id);
-            if (existingRecipe == null)
-            {
-                _lastError = "This recipe does not exist!";
-                return false;
-            }
-            _recipeCollection.Delete(recipe.Id);
+            _recipeCollection.DeleteMany(r =>
+                r.ItemA == recipe.ItemA && r.ItemB == recipe.ItemB && r.Method == recipe.Method);
             return true;
-        }
-
-        public LDBRecipe? GetRecipe(string id)
-        {
-            ObjectId objectId = new(id);
-            return _recipeCollection.FindById(objectId);
         }
 
         public void Dispose()

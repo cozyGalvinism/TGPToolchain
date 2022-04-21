@@ -16,8 +16,7 @@ namespace TGPToolchain.Services
         IEnumerable<LDBRecipe> GetRecipes();
         IEnumerable<LDBRecipe> FindRecipes(string query);
         bool CreateRecipe(LDBRecipe recipe);
-        bool EditRecipe(LDBRecipe recipe);
+        bool EditRecipe(LDBRecipe oldRecipe, LDBRecipe recipe);
         bool DeleteRecipe(LDBRecipe recipe);
-        LDBRecipe? GetRecipe(string id);
     }
 }
